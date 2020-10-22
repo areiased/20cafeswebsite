@@ -1,0 +1,484 @@
+@import "../styles.scss";
+
+:focus{
+    outline: none;
+}
+
+
+
+@keyframes Dropdown {
+    0% {opacity: 0;
+        top: -100px;}
+    100% {opacity: 1;
+        top: 0px;}
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+
+.wholepage-div {
+    height: 100vh;
+    background: transparent;
+    width: 100vw;
+
+}
+
+.navbar-bgdiv {
+    width: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    opacity: 0; // animation start
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    animation: 0.6s Dropdown ease-out forwards 1s;
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+
+    .navbar-div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-width: 300px;
+        transition: 0.5s all;
+        pointer-events: auto;
+
+        .navbar {
+            font-weight: 400;
+            font-family: "Lato";
+            font-size: 100%;
+            width: 100%;
+            height: 60px;
+            transition : all 0.2s;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            color: rgb(0,20,30);
+            
+
+            .navbar-logo-div {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 70px;
+                height: 100%;
+                overflow: hidden;
+                background-color: rgba(255,255,255,0.7);
+                transition: 0.5s all;
+
+                &:hover {
+                    background-color: rgba(255,255,255,1);
+                    transition: 0.2s all;
+                }
+
+                .navbar-logo {
+                    object-fit: contain;
+                    height: 50px;
+                    transition: 0.2s all;
+                    
+                    &:hover {
+                        height: 55px;
+                    }
+                }
+
+            }
+
+            .hamb-menu-button {
+
+                width: 80px;
+                height: 100%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0px 10px 10px 0px;
+                background-color: rgba(255,255,255,0.7);
+                transition: 0.3s all;
+
+                &:hover {
+                    background-color: rgba(255,255,255,1); 
+                    transition: 0.1s all;
+                }
+
+                @media only screen and (min-width: 700px) { // disable hamburger button when bigger than this
+                    display: none;
+                }
+            }
+
+            .hamburger-menu-div {
+                position: absolute;
+                top: -100vh;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 1000;
+                background-color: rgba(0,0,0,0.7);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                transition: 0.2s all ease-out;
+                
+                @media only screen and (min-width: 700px) { // disable hamburger when bigger than this
+                    display: none;
+                }
+
+                .hamb-links-div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+
+                }
+                
+                .closebtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    color: black;
+                    background-color: rgba(255,255,255,0.6);
+                    border-radius: 4px;
+                    top: 5px;
+                    right: 5px;
+                    width: 50px;
+                    height: 50px;
+                    z-index: 1500;
+                    cursor: pointer;
+                    transition: 0.3s all;
+
+                    &:hover,
+                    &:focus {
+                        background-color: rgba(255,255,255,0.7);
+                        box-shadow: 2px 2px 3px grey, -2px -2px 3px lightgrey;
+                    }
+
+                    &:active {
+                        box-shadow: inset -2px -2px 3px lightgrey, inset 2px 2px 3px grey;
+                    }
+                }
+
+                .link-hamb {
+                    cursor: pointer;
+                    display: flex;
+                    width: 90%;
+                    height: 50px;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    background-color: rgba(255,255,255,0.9);
+                    margin: 2px 0px;
+                    border-radius: 5px;
+                    transition: 0.5s all;
+
+                    &:hover,
+                    &:focus {
+                        background-color: rgba(255,255,255,1);
+                        border-radius: 30px;
+                        transition: 0.2s all ease-out;
+                    }
+
+                    &:active {
+                        box-shadow: inset -2px -2px 3px lightgrey, inset 2px 2px 3px grey;
+                    }
+                }
+
+                .link-loja {
+                    color: rgb(168, 115, 0);
+                }
+            }
+
+            .menu-buttons {
+                @media only screen and (max-width: 700px) { // disable horizontal menu to enable hamburger
+                    display: none;
+                }
+
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                .link {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background: transparent;
+                    width: 15%;
+                    max-width: 200px;
+                    min-width: 30px;
+                    height: 100%;
+                    border-radius: 0px;
+                    cursor: pointer;
+                    transition: 0.5s all;
+                    margin: 0px 1px 0px 1px;
+
+                    @media only screen and (max-width: 1000px) {
+                        span {
+                            display: none;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: rgba(255,255,255,0.8);
+                        border-radius: 15px;
+                        transition: 0.1s all;
+                    }
+
+                    &:active {
+                        box-shadow: inset -1px -1px 2px lightgrey, inset 1px 1px 2px grey;
+                    }
+                }
+
+                .link-loja {
+                    border-radius: 0px 10px 10px 0px;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    margin-left: 0px;
+
+                    &:hover {
+                        background-color: rgba(255, 240, 109,1);
+                        border-radius: 0px 15px 15px 0px;
+                        color: black;
+                    }
+                }
+
+                .active-link {
+                    background-color: rgba(255,255,255,0.8);
+                }
+                
+                a:hover,
+                a:active {
+                    box-shadow: none;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+        }
+        .link-alignedright {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            border-radius: 10px 0px 0px 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            right: 0;
+            width: 80px;
+            transition: 0.1s all;
+            overflow: hidden;
+
+            .chat-link {
+                display: none;
+                opacity: 0;
+                transition: 0.1s opacity 0s;
+            }
+
+            &:active {
+                box-shadow: inset -1px -1px 2px lightgrey, inset 1px 1px 2px grey;
+            }
+
+            &:hover {
+                width: 200px;
+
+                .chat-link {
+                    display: block;
+                    opacity: 1;
+                    transition: 0.2s opacity 0.3s;
+                }
+            }
+
+        }
+    }
+
+    .navbar-div-scrolledcolor {
+        background-color: rgba(100,100,100,0.6);
+        transition: 0.5s all;
+
+        .navbar {
+            height: 40px;
+
+            .menu-buttons {
+                color: white;
+
+                .link:hover {
+                    background-color: rgba(50,50,50,0.4);
+                }
+
+                .link-loja {
+                    color: black;
+
+                    &:hover {
+                        background-color: rgba(255, 240, 109,0.9);
+                    }
+                }
+
+
+                a,
+                a:link,
+                a:visited {
+                    color: white;
+                    transition : 0.5s all;
+                }
+            }
+
+            .navbar-logo-div {
+                .navbar-logo {
+                    height: 35px;
+
+                    &:hover {
+                        height: 40px;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.pagelogo {
+    width: 100%;
+    height: 40vh;
+
+    .background-img-div {
+
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-size: cover;
+            object-fit: cover;
+            z-index: -1000;
+        }
+
+        .logo {
+            position: relative;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 45vh;
+            animation: 0.8s Dropdown ease-out forwards 0.5s;
+
+            .logo-image {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+        
+    }
+
+}
+
+.pagecontent-outerdiv {
+
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .page-content {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+        min-height: 500px;
+        background: white;
+        border-radius: 20px;
+
+    }
+    
+    .footer {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-shadow: 1px 1px black;
+        font-weight: 400;
+        width: 100%;
+        height: 100px;
+
+        a {
+            color: rgb(176, 166, 243);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+
+            .tooltiptext {
+                visibility: hidden;
+                opacity: 0;
+                width: 120px;
+                background-color: white;
+                color: black;
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 6px;
+                text-shadow: none;
+                
+                // Position the tooltip text
+                width: 120px;
+                bottom: 100%;
+                left: 50%; 
+                margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+                position: absolute;
+                z-index: 1;
+                transition: 0.5s all 0.1s;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                .tooltiptext {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: 0.5s all 0s;
+                }
+            }
+        }
+
+        
+    }
+
+}

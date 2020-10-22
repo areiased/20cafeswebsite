@@ -1,0 +1,24 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+        <div class="authBlock">
+            <h1 *ngIf="!authService.userData" style="text-align: center;">Abacalhar</h1>
+            <h1 *ngIf="authService.userData as user" style="text-align: center;">Já estás abacalhado(a): {{user.displayName}} !</h1>
+            <div *ngIf="authService.userData" class="googleButton" [routerLink]="['']" matRipple>
+                <i class="material-icons" style="margin: 0px 3px 0px 0px;">home</i>
+                <span class="about-link">Voltar ao início</span>
+            </div>
+            <!-- Calling Google Api from AuthService -->
+            <div class="formGroup" *ngIf="!authService.userData">
+                <div
+                    type="button"
+                    class="googleButton"
+                    (click)="authService.GoogleAuth()"
+                    matRipple
+                >
+                    <i class="material-icons" style="margin-right: 5px;">login</i>
+                    Abacalhar com o Google
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

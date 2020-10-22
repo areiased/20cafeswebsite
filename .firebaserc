@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "vintecafes": {
+      "hosting": {
+        "cafespage": [
+          "vintecafes"
+        ]
+      }
+    },
+    "cafes20": {
+      "hosting": {
+        "cafespage": [
+          "cafes20"
+        ]
+      }
+    }
+  }
+}

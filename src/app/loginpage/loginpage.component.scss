@@ -1,0 +1,23 @@
+
+
+.googleButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 230px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgb(233, 233, 233);
+    box-shadow: 2px 2px 2px grey, -2px -2px 2px lightgrey;
+    transition: 0.3s all;
+    cursor: pointer;
+
+    &:hover {
+        background-color: white;
+    }
+
+    &:active {
+        box-shadow: inset 1px 1px 1px grey;
+    }
+}

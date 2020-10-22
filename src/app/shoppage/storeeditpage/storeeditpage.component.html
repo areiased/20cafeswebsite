@@ -1,0 +1,85 @@
+<div *ngFor="let product of products">
+    <mat-card>
+        <nav>ID: {{ product.id }}</nav>
+        <nav>Nome: {{ product.name }}</nav>
+        <nav>Descrição: {{ product.description }}</nav>
+        <nav>Preço: {{ product.basePrice }} €</nav>
+        <nav>Criado em: {{ product.createdAt }}</nav>
+        <nav>Última modificação: {{ product.updatedAt }}</nav>
+        <nav>
+            <button mat-raised-button color="primary" style="margin: 10px">
+                Ver / Comprar
+            </button>
+            <button mat-raised-button style="margin: 10px">Edit</button>
+            <!-- *ngIf="authService.userData as user; then user.email === '20cafesaodia@gmail.com'" -->
+            <button
+                mat-raised-button
+                color="warn"
+                style="margin: 10px"
+                [matMenuTriggerFor]="menu"
+            >
+                Delete
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Cancelar</button>
+                <button
+                    mat-menu-item
+                    style="color: red"
+                    (click)="deleteProduct(product.id, product.name)"
+                >
+                    APAGAR
+                </button>
+            </mat-menu>
+        </nav>
+    </mat-card>
+</div>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <input #productImage
+        id="productImage-input"
+        name="productImage"
+        autocomplete="off"
+        type="file"
+        accept="image/*">
+    <mat-form-field class="form-input">
+        <input
+            matInput
+            placeholder="Nome"
+            formControlName="name"
+            type="text"
+            required
+        />
+    </mat-form-field> <br>
+    <mat-form-field class="form-input">
+        <input
+            matInput
+            placeholder="Descrição"
+            formControlName="description"
+            type="text"
+            required
+        />
+    </mat-form-field> <br>
+    <mat-form-field class="form-input">
+        <span matPrefix>€ </span>
+        <input
+            matInput
+            placeholder="Preço Base (Ex: '12' ou '12,50')"
+            formControlName="basePrice"
+            type="number"
+            required
+        />
+    </mat-form-field> <br>
+    <mat-form-field class="form-input">
+        <input
+            matInput
+            placeholder="Unidades Disponíveis"
+            formControlName="stock"
+            type="number"
+            required
+        />
+        <nav matSuffix> unidades</nav>
+    </mat-form-field> <br>
+    <button class="form-button" mat-raised-button color="primary" type="submit">
+        Criar Produto
+    </button>
+</form>
