@@ -9,11 +9,11 @@ It's a project (and a community) that me and 2 more friends are building. It foc
 
 ### *What is this Website about and why is the source code here?*
 * This website was created by me (Eduardo Correia) after I finished my Full-Stack Web Developer course at FLAG School, in Porto, Portugal.
-I love building websites and specially Frontend stuff, and I wanted to learn more and train every aspect possible of a full website creation. After me and my friends started this community, I had an idea of making a fully working and very capable website showing off our community projects and our team, promoting our social networks and connections.
+I love building websites and specially Frontend stuff, and I wanted to learn more and train every aspect possible of a full, modern website creation. After me and my friends started this community, I had an idea of making a fully working and very capable website showing off our community projects and our team, promoting our social networks and connections.
 This website is constantly under construction and can change completely without any previous notice. It is very new and a lot of things are still being built only by me, and since I am (yet) no senior or super professional in Web Dev, I still can't make stuff THAT fast and I still have to create content, edit videos, upload, stream on Twitch, etc for the community, so things here with this website don't move that fast, but I am doing my best.
 * The source code is almost completely here because this is the way I back up every project I make, on Github. This was already here but was private before, I made it public and removed some files that I believed where a security concern to be open to the public, and now it serves as a way to show off my capabilities as a solo Web Developer.
 
-This website is made using Angular 10, wrote in Typescript, HTML5 and SCSS.
+This website is made using Angular 10, wrote in Typescript, HTML5 and SCSS. It uses a lot of Responsive Design Philosophies. Works perfectly on any screen size, desktop or mobile, and auto-adjusts itself to any window size change. It has smooth animations and a beautiful design, feels and looks extremely modern and the people I show it to (random people, not Web Devs) say that its one of the most responsive and smoothest feeling websites they ever seen.
 It connects to Google Firebase for some experimental storage and small database (im currently using it to create a small online e-commerce page on this same website, all from scratch).
 The website has Google Auth login and Google Accounts functionality, but currently is a function that is not supposed to be accessed publicly.
 
