@@ -1,4 +1,4 @@
-# 20Cafés/dia Official Website
+# 20Cafés/dia Official Website ☕️
 ### 100% Created and Hosted by Eduardo Correia | Azenyr
 
 ### This is the almost complete source code for my website [20cafes.com](https://20cafes.com)
@@ -19,7 +19,7 @@ It connects to Google Firebase for some experimental storage and small database 
 The website has Google Auth login and Google Accounts functionality, but currently is a function that is not supposed to be accessed publicly.
 
 #### *This was completely made from scratch by me: Eduardo Correia (owner of this github profile).*
-### If you wanna contact me for professional enquiries, please do so!
+### ⭐️ If you wanna contact me for professional enquiries, please do so!
 **My social and contact links:**
 * **My personal website** (hosted as a subdomain): [eduardocorreia.20cafes.com](eduardocorreia.20cafes.com)
 * [Old Personal Website](eduardocorreia.epizy.com)
