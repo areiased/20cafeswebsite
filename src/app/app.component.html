@@ -3,7 +3,7 @@
     <div class="navbar-bgdiv">
         <div class="navbar-div" (scroll)="onWindowScroll($event);">
             <div class="navbar">
-                <div class="navbar-logo-div" [routerLink]="[ '' ]" matRipple><img class="navbar-logo" src="../assets/img/logoonly_blue.png" alt=""></div>
+                <div class="navbar-logo-div" [routerLink]="[ '' ]" matRipple matTooltip="Ir para a página inicial"><img class="navbar-logo" src="../assets/img/logoonly_blue.png" alt=""></div>
                 <!-- <div class="link" ><nav class="home-link">Início</nav></div> -->
 
                 <!-- hamburger menu start -->
@@ -11,14 +11,14 @@
 
                 <div class="hamburger-menu-div" id="hamburger-menu-div">
                     <div class="hamb-links-div">
-                        <div class="closebtn" (click)="closeMenu()"><i class="material-icons">close</i></div>
-                        <nav style="height: 40px; color: white; font-weight: 700;">Para onde queres ir? ☕️</nav>
-                        <div class="link-hamb link-loja" (click)="closeMenu()" [routerLink]="[ 'editarloja' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">store</i>
+                        <div class="closebtn" (click)="closeMenu()" matRipple><i class="material-icons">close</i></div>
+                        <nav style="height: 40px; color: white; font-weight: 700;">Olá! Para onde queres ir? ☕️</nav>
+                        <div class="link-hamb link-loja" (click)="closeMenu()" [routerLink]="[ 'loja' ]" routerLinkActive="active-link" matRipple>
+                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
                             <span class="loja-link-text" >Loja Oficial</span>
                         </div>
-                        <a class="link-hamb" (click)="closeMenu()" href="https://teespring.com/stores/20cafes" matRipple  target="_blank()">
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
+                        <a class="link-hamb" (click)="closeMenu()" href="https://teespring.com/stores/20cafes" matRipple  target="_blank" rel="noreferrer noopener">
+                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
                             <span class="text">Merchandise</span>
                         </a>
                         <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'blog' ]" routerLinkActive="active-link" matRipple>
@@ -48,39 +48,38 @@
                 </div>
                 <!-- end of hamburger menu -->
                 <div class="menu-buttons">
-                    <div class="link link-loja" [routerLink]="[ 'editarloja' ]" routerLinkActive="active-link" matRipple>
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">store</i>
+                    <div class="link link-loja" [routerLink]="[ 'loja' ]" routerLinkActive="active-link" matRipple matTooltip="Local onde vamos vender os nossos 3D Prints transformados em acessórios incríveis, a preços mínimos. Ainda não está pronto, volta mais tarde!">
+                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
                         <span class="loja-link-text" >Loja Oficial</span>
                     </div>
-                    <a class="link" href="https://teespring.com/stores/20cafes" matRipple  target="_blank()">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
+                    <a class="link link-merch" href="https://teespring.com/stores/20cafes" matRipple matTooltip="RECOMENDADO! Arte criada por nós em produtos que vais adorar!"  target="_blank" rel="noreferrer noopener">
+                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
                         <span class="about-link">Merchandise</span>
                     </a>
-                    <div class="link" [routerLink]="[ 'blog' ]" routerLinkActive="active-link" matRipple>
+                    <div class="link" [routerLink]="[ 'blog' ]" routerLinkActive="active-link" matRipple matTooltip="Onde postamos as nossas grandes novidades! Ainda em construção.">
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">sticky_note_2</i>
                         <span class="forum-link" >Blog</span>
                     </div>
-                    <div class="link" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple>
+                    <div class="link" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple matTooltip="A nossa lista dos melhores projetos que já criamos! Ainda em construção.">
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">topic</i>
                         <span class="projects-link">Projetos</span>
                     </div>
-                    <div class="link" [routerLink]="[ 'equipa' ]" routerLinkActive="active-link" matRipple>
+                    <div class="link" [routerLink]="[ 'equipa' ]" routerLinkActive="active-link" matRipple matTooltip="Conhece a equipa de produtores de conteúdo de 20Cafés/dia! Ainda em construção.">
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">people_alt</i>
                         <span class="team-link">Equipa</span>
                     </div>
-                    <div class="link" [routerLink]="[ 'sobre' ]" routerLinkActive="active-link" matRipple>
+                    <div class="link" [routerLink]="[ 'sobre' ]" routerLinkActive="active-link" matRipple matTooltip="Descobre o que é o 20Cafés/dia!">
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">info</i>
                         <span class="about-link">Sobre</span>
                     </div>
-                    <div *ngIf="authService.userData as user">Ligado como {{(user.displayName) ? user.displayName : 'User'}}</div>
-                    <div *ngIf="authService.userData" class="link" (click)="authService.SignOut()"  matRipple>
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">exit_to_app</i>
-                        <span class="about-link">Logout</span>
-                    </div>
                 </div>
             </div>
+            <div *ngIf="authService.userData as user" style="width: 120px;">Ligado:<br>{{(user.displayName) ? user.displayName : 'User'}}</div>
+            <div *ngIf="authService.userData" class="link link-alignedright" (click)="authService.SignOut()"  matRipple matTooltip="Sair da conta" style="width: fit-content; border-radius: 0px; background-color: transparent; margin-right: 20px;">
+                <i class="material-icons" style="margin: 0px 3px 0px 0px;">exit_to_app</i>
+            </div>
 
-            <div class="link link-alignedright" matRipple
+            <div class="link link-alignedright" matRipple matTooltip="Mantém o contacto com a comunidade no Twitch!"
             onClick="MyWindow=window.open('https://www.twitch.tv/embed/20cafespordia/chat?parent=20cafes.com','20Cafés - Janela do Twitch Chat','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">
                 <i class="material-icons" style="margin: 0px 3px 0px 0px;">chat</i>
                 <span class="chat-link">20Cafés Chat</span>
@@ -91,13 +90,12 @@
     <div class="pagelogo">
 
         <div class="background-img-div">
-            <img src="../assets/img/bgimg.jpg" alt="background" class="bg-image">
-            <!-- <video autoplay muted id="bgvideo" class="bg-image">
-                <source src="../assets/video/pagebgvideo.mp4" type="video/mp4">
-            </video> -->
+            <img src="../assets/img/background.jpg" alt="background" class="bg-image">
             
             <div class="logo">
-                <img src="../assets/img/logomain.png" alt="20Cafes main logo" class="logo-image">
+                <a href="https://20cafes.com">
+                    <img src="../assets/img/20cafeslogo2.png" alt="20Cafes main logo" class="logo-image">
+                </a>
             </div>
         </div>
 
@@ -109,11 +107,10 @@
         </div>
 
         <div class="footer">
-            <span> Copyright (c) 2020 - 20Cafes/dia <br>
+            <span> Copyright (c) 2020 - 20Cafes/dia<br>
                 <small style="font-size: 70%;">Created by
-                    <a href="http://eduardocorreia.20cafes.com" alt="Visit Portfolio" class="tooltip">
-                        Eduardo Correia - Certified Fullstack Web Developer
-                        <span class="tooltiptext">Visit Portfolio</span>
+                    <a href="http://eduardocorreia.20cafes.com" alt="Visit Portfolio" matTooltip="Visitar o Portfolio / Visit Portofolio">
+                        Eduardo Correia - Fullstack Web Developer
                     </a>
                 </small>
             </span>

@@ -10,16 +10,17 @@ import { ShoppageComponent } from './shoppage/shoppage.component';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
 
 import { AuthGuard } from './shared/guard/auth.guard';
+import { TeampageComponent } from './teampage/teampage.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'sobre', component: AboutpageComponent },
-  { path: 'projetos', component: BlogpageComponent },
+  { path: 'projetos', component: ProjectspageComponent },
   { path: 'blog', component: BlogpageComponent },
-  { path: 'equipa', component: BlogpageComponent },
+  { path: 'equipa', component: TeampageComponent },
   { path: 'loja', component: ShoppageComponent},
   { path: 'abacalhar', component: LoginpageComponent},
-  { path: 'editarloja', component: StoreeditpageComponent}, // , canActivate: [AuthGuard]
+  { path: 'editarloja', component: StoreeditpageComponent, canActivate: [AuthGuard]}, // , canActivate: [AuthGuard]
 
   {path: '404', component: Page404Component}, // handle 404 redirect
   {path: '**', redirectTo: '/404'}

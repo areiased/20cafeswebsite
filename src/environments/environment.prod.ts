@@ -1,4 +1,4 @@
-export const environment = {
+export const environment = { // NAO INCLUIR ESTES DADOS NO GIT UPLOAD - ADICIONAR /ENVIRONMENTS NO .GITIGNORE
   production: true,
 
   firebase: {

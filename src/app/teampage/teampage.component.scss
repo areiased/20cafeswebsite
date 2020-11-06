@@ -1,0 +1,67 @@
+@import "../../styles.scss";
+
+.teampageouterdiv {
+    opacity: 0;
+    width: 100vw;
+    height: 100%;
+    padding: 20px 0px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    animation: 0.3s WholePageOpenDropDown ease-out 0s forwards;
+
+    .title {
+        width: 100%;
+        text-align: center;
+
+        h1 {
+        font-size: 28px;
+        font-weight: 400;
+        }
+    }
+
+
+    .card {
+        background-color: white;
+        margin: 10px 0px 10px 0px;
+        padding: 10px 0px 10px 0px;
+        width: 100%;
+        max-width: 100vw;
+        min-height: 300px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-weight: 400;
+        }
+    
+        .card-img-div {
+            cursor: auto;
+            flex: 400px 1 1;
+            overflow: hidden;
+            max-width: 200px;
+            padding: 10px;
+    
+            img {
+                border-radius: 50%;
+                width: 200px;
+                height: 200px;
+            }
+        }
+    
+        .card-text {
+            padding: 0px 10px 0px 10px;
+            flex: 400px 5 5;
+            max-width: 750px;
+        }
+    }
+
+}

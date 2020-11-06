@@ -1,19 +1,7 @@
 @import "../../styles.scss";
 
-@keyframes DropDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-100px);
-    };
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    };
-}
-
 h1 {
     font-size: 20px;
-    line-height: 1.6;
     font-weight: 700;
 }
 
@@ -26,15 +14,7 @@ h1 {
     align-items: center;
     opacity: 0;
     transform: translateY(-100px);
-    animation: 0.5s DropDown ease-out 0.2s forwards;
-
-    .divider {
-        margin: 20px 0px 20px 0;
-        width: 100%;
-        height: 3px;
-        background-color: lightgrey;
-        border-radius: 50%;
-    }
+    animation: 0.3s WholePageOpenDropDown ease-out 0s forwards;
 
 
     .welcometitle {
@@ -46,9 +26,10 @@ h1 {
         justify-content: center;
         align-items: center;
 
+
         .welcome-title-text {
             h1 {
-                font-size: 280%;
+                font-size: 30px;
                 font-weight: 700;
                 line-height: 2;
             }
@@ -77,57 +58,12 @@ h1 {
         justify-content: space-evenly;
 
         .card {
-            background-color: rgb(230,230,230);
-            border-radius: 5px;
-            width: 100%;
             max-width: 500px;
             min-height: 300px;
             max-height: 600px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            transition: 0.5s all;
             margin: 10px 5px 10px 5px;
-            overflow: hidden;
-
-            @media only screen and (max-width: 540px) { //cards go fullscreen width
-                max-width: 100%;
-            }
-
-            &:hover,
-            &:focus {
-                box-shadow: 2px 2px 4px grey;
-                background-color: rgb(245,245,245);
-                border-radius: 20px;
-                transition: 0.2s all;
-            }
-
-            &:active {
-                transform: scale(0.99);
-                box-shadow: 2px 2px 8px grey;
-                transition: 0.1s all;
-            }
 
             .card-img-div {
-                cursor: pointer;
-                border-radius: 5px;
-                width: 100%;
-                max-width: 500px;
-                height: fit-content;
-                max-height: 260px;
-                object-fit: fill;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .card-img {
-                    width: 100%;
-                    max-width: 500px;
-                    height: 260px;
-                    object-fit: fill;
-                    overflow: hidden;
-                }
 
                 .card-img-social {
                     width: 100%;
@@ -143,30 +79,21 @@ h1 {
                     }
                 }
             }
-
-            .card-title {
-                padding: 10px 10px 5px 10px;
-                font-size: 120%;
-                font-weight: 400;
-
-            }
-
-            .card-text {
-                font-size: 100%;
-                font-weight: 300;
-                padding: 0px 10px 10px 10px;
-            }
         }
 
         .card-top {
-            display: inline-block;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
             width: 100%;
             max-width: 500px;
             height: 100%;
             max-height: 300px;
-            overflow: scroll;
 
             .card-img-div {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
                 overflow: scroll;
             }
 
@@ -178,8 +105,7 @@ h1 {
 
     .news-cards-social {
         .card {
-            height: 100%;
-            max-height: 300px;
+            height: 300px;
             width: 100%;
             max-width: 250px;
 
@@ -188,10 +114,18 @@ h1 {
             }
 
             .card-img-div {
-                height: 300px;
+                width: 100%;
+                height: 100%;
                 align-self: center;
                 justify-self: center;
                 cursor: auto;
+                object-fit: contain;
+
+                .card-img-social {
+                    width: 200px;
+                    height: 100%;
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -1,8 +1,8 @@
 <div class="displayTable">
     <div class="displayTableCell">
         <div class="authBlock">
-            <h1 *ngIf="!authService.userData" style="text-align: center;">Abacalhar</h1>
-            <h1 *ngIf="authService.userData as user" style="text-align: center;">Já estás abacalhado(a): {{user.displayName}} !</h1>
+            <h1 *ngIf="!authService.userData" style="text-align: center;">Abacalhar po site</h1>
+            <h1 *ngIf="authService.userData as user" style="text-align: center;">Já estás abacalhado(a) como: <br> {{user.displayName}}</h1>
             <div *ngIf="authService.userData" class="googleButton" [routerLink]="['']" matRipple>
                 <i class="material-icons" style="margin: 0px 3px 0px 0px;">home</i>
                 <span class="about-link">Voltar ao início</span>

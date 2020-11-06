@@ -4,13 +4,23 @@
     outline: none;
 }
 
-
+@keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 
 @keyframes Dropdown {
     0% {opacity: 0;
         top: -100px;}
     100% {opacity: 1;
         top: 0px;}
+}
+
+@keyframes OpeningAnimation {
+    0% {
+        height: 100vh;}
+    100% {
+        height: 300px;}
 }
 
 .material-icons {
@@ -55,7 +65,7 @@
     display: flex;
     justify-content: center;
     pointer-events: none;
-    animation: 0.6s Dropdown ease-out forwards 1s;
+    animation: 0.6s Dropdown ease-out forwards 1.5s;
     background-color: rgba(255,255,255,0.2);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -84,6 +94,12 @@
             align-items: center;
             justify-content: flex-start;
             color: rgb(0,20,30);
+
+            a,
+            a:link,
+            a:visited {
+                color: rgb(174, 0, 180);
+            }
             
 
             .navbar-logo-div {
@@ -161,6 +177,12 @@
                     height: 100%;
 
                 }
+
+                a,
+                a:link,
+                a:hover {
+                    box-shadow: none;
+                }
                 
                 .closebtn {
                     display: flex;
@@ -180,12 +202,13 @@
 
                     &:hover,
                     &:focus {
-                        background-color: rgba(255,255,255,0.7);
-                        box-shadow: 2px 2px 3px grey, -2px -2px 3px lightgrey;
+                        border-radius: 10px;
+                        background-color: rgba(255,255,255,1);
                     }
 
                     &:active {
                         box-shadow: inset -2px -2px 3px lightgrey, inset 2px 2px 3px grey;
+                        transition: 0.05s all;
                     }
                 }
 
@@ -254,8 +277,8 @@
                     }
 
                     &:hover {
-                        background-color: rgba(255,255,255,0.8);
-                        border-radius: 15px;
+                        background-color: rgba(255,255,255,0.7);
+                        border-radius: 20px;
                         transition: 0.1s all;
                     }
 
@@ -265,19 +288,33 @@
                 }
 
                 .link-loja {
-                    border-radius: 0px 10px 10px 0px;
+                    border-radius: 0px;
                     background-color: rgba(255, 255, 255, 0.7);
-                    margin-left: 0px;
+                    margin: 0px;
+                    max-width: 140px;
 
                     &:hover {
                         background-color: rgba(255, 240, 109,1);
-                        border-radius: 0px 15px 15px 0px;
+                        border-radius: 0px;
                         color: black;
                     }
                 }
 
+                .link-merch {
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-radius: 0px 10px 10px 0px;
+                    margin-left: 0px;
+                    max-width: 140px;
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.9);
+                        border-radius: 0px 15px 15px 0px;
+                    }
+                }
+
                 .active-link {
-                    background-color: rgba(255,255,255,0.8);
+                    color: black;
+                    background-color: rgba(255,255,255,0.6);
                 }
                 
                 a:hover,
@@ -335,23 +372,23 @@
                 color: white;
 
                 .link:hover {
-                    background-color: rgba(50,50,50,0.4);
+                    background-color: rgba(100,100,100,0.4);
                 }
 
                 .link-loja {
                     color: black;
 
                     &:hover {
-                        background-color: rgba(255, 240, 109,0.9);
+                        background-color: rgba(255, 240, 109,0.8);
                     }
                 }
 
+                .link-merch:hover {
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
 
-                a,
-                a:link,
-                a:visited {
-                    color: white;
-                    transition : 0.5s all;
+                .active-link:hover {
+                    background-color: rgba(255,255,255,0.8);
                 }
             }
 
@@ -371,9 +408,12 @@
 
 .pagelogo {
     width: 100%;
-    height: 40vh;
+    height: 100vh;
+    animation: 0.5s OpeningAnimation ease-out 1.2s forwards;
 
     .background-img-div {
+        width: 100%;
+        height: 100%;
 
         .bg-image {
             width: 100%;
@@ -391,12 +431,19 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 45vh;
-            animation: 0.8s Dropdown ease-out forwards 0.5s;
+            height: 100%;
+            animation: 1s fadein forwards 0.2s;
 
             .logo-image {
+                margin-top: 60px;
                 width: 90%;
                 max-width: 400px;
+                transition: 0.4s all;
+
+                &:hover {
+                    transform: scale(1.05);
+                    transition: 0.2s all;
+                }
             }
         }
         
@@ -419,7 +466,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        margin: 20px 0px 0px 0px;
+        margin: 0;
         min-height: 500px;
         background: white;
         border-radius: 20px;
@@ -427,58 +474,20 @@
     }
     
     .footer {
-        color: white;
+        color: black;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        text-shadow: 1px 1px black;
         font-weight: 400;
+        font-size: 14px;
         width: 100%;
         height: 100px;
 
         a {
-            color: rgb(176, 166, 243);
+            color: rgb(199, 0, 0);
         }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-
-            .tooltiptext {
-                visibility: hidden;
-                opacity: 0;
-                width: 120px;
-                background-color: white;
-                color: black;
-                text-align: center;
-                padding: 5px 0;
-                border-radius: 6px;
-                text-shadow: none;
-                
-                // Position the tooltip text
-                width: 120px;
-                bottom: 100%;
-                left: 50%; 
-                margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
-                position: absolute;
-                z-index: 1;
-                transition: 0.5s all 0.1s;
-            }
-
-            &:hover,
-            &:active,
-            &:focus {
-                .tooltiptext {
-                    visibility: visible;
-                    opacity: 1;
-                    transition: 0.5s all 0s;
-                }
-            }
-        }
-
-        
     }
 
 }

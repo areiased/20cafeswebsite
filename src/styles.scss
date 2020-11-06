@@ -54,7 +54,7 @@ h1 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.6;
+	line-height: 1.6;
 }
 
 a,
@@ -68,21 +68,130 @@ a:visited {
     &:hover,
     &:active,
     &:focus {
-		background-color: rgba(236, 236, 236, 0.4);
-		color: black;
-		border-radius: 2px;
-		box-shadow: 2px 2px 2px grey;
-		transition: all 0.2s;
-	}
-	
-	&:active {
-		background-color: white;
-		box-shadow: inset -1px -1px 2px grey;
-		transition: all 0.2s;
+		color: lighten($color: teal, $amount: 20%);
+		transition: all 0.1s;
 	}
 }
 
 // SET COLOR VARIABLES
 
-$RippleAnimationColor: rgba(255,255,255,1);
+$WebsiteBgColor: white;
+$CardsBgColor: rgb(245,245,245);
 
+// global animations 
+
+@keyframes WholePageOpenDropDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    };
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    };
+}
+
+
+// set some custom global UI elements
+
+.divider {
+	margin: 20px 0px 20px 0;
+	width: 100%;
+	height: 3px;
+	background-color: lightgrey;
+	border-radius: 50%;
+}
+
+.social-logos-div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+
+	a,
+	a:link {
+		filter: grayscale(1);
+	}
+
+	a:hover,
+	a:active {
+		transform: scale(1.2);
+		box-shadow: none;
+		background-color: transparent;
+		filter: grayscale(0);
+	}
+
+	.social-logos {
+		height: 30px;
+		margin: 0px 20px 0px 20px;
+	}
+}
+
+.card {
+
+	background-color: $CardsBgColor;
+	border-radius: 10px;
+	width: 100%;
+	// max-width: 500px;
+	// min-height: 300px;
+	// max-height: 600px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	transition: 0.5s all;
+	// margin: 10px 5px 10px 5px;
+	overflow: hidden;
+
+	@media only screen and (max-width: 540px) { //cards go fullscreen width
+		max-width: 100%;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.01);
+		box-shadow: 0px 0px 10px rgb(180, 180, 180);
+		background-color: rgb(245,245,245);
+		transition: 0.2s all;
+	}
+
+	&:active {
+		transform: scale(1.005);
+		box-shadow: 0px 0px 8px rgb(180, 180, 180);
+		transition: 0.1s all;
+	}
+
+	.card-img-div {
+		cursor: pointer;
+		border-radius: 10px;
+		width: 100%;
+		height: fit-content;
+		max-height: 260px;
+		object-fit: fill;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.card-img {
+			width: 100%;
+			height: 100%;
+			object-fit: fill;
+			overflow: hidden;
+		}
+	}
+
+	.card-title {
+		padding: 10px 10px 5px 10px;
+		font-size: 16px;
+		font-weight: 400;
+
+	}
+
+	.card-text {
+		font-size: 14px;
+		font-weight: 300;
+		padding: 10px;
+	}
+}

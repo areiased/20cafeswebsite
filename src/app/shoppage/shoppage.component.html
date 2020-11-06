@@ -1,1 +1,35 @@
 
+<div class="wholeshoppage-div">
+
+    <div class="top-text">
+        <h1>Loja de Produtos Oficiais</h1>
+        <h1>⚠️ Ainda em construção! ⚠️</h1>
+        <p>Todos estes produtos são feitos e desenhados por nós do absoluto zero, impressos com as nossas impressoras 3D e enviados até ti também por nós! 😉</p>
+    </div>
+    <div class="shop-cards">
+        <div *ngFor="let product of products">
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="{{ product.productImageUrl }}" alt="">
+                </div>
+                <div class="item-details">
+                    <nav>Nome: {{ product.name }}</nav>
+                    <nav>Descrição: {{ product.description }}</nav>
+                    <nav>Preço: {{ product.basePrice }}€ /unidade</nav>
+                    <nav>Quantidade Disponível: {{ product.stock }}</nav>
+                    
+                </div>
+                <nav class="item-buttons">
+                    <button mat-flat-button color="primary">
+                        Ver
+                    </button>
+                    <button mat-flat-button color="accent">
+                        Comprar
+                    </button>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+</div>

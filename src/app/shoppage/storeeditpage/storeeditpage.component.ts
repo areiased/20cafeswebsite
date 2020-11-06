@@ -16,11 +16,13 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class StoreeditpageComponent implements OnInit {
 
-  selectedProductImage: File = null;
   downloadURL: Observable<string>;
-
+  public imageUrl: string = null;
+  imagePath: string = null;
+  public currentlySelectedFile: any = null;
   products: Produtos[];
   productsCollection: AngularFirestoreCollection;
+  user: any;
 
   constructor(private produtosService: ProdutosService,
               public authService: AuthService,
@@ -35,9 +37,7 @@ export class StoreeditpageComponent implements OnInit {
     basePrice: new FormControl('', [ Validators.required, Validators.minLength(4), Validators.maxLength(6),
       Validators.pattern('^[0-9]\\d*(\\.\\d{1,2})?$') ]),
     stock: new FormControl('', [ Validators.required, Validators.minLength(1), Validators.maxLength(3),
-      Validators.pattern('^[0-9]\\?$') ]),
-    createdAt: new FormControl(Date()),
-    updatedAt: new FormControl(Date()),
+      Validators.min(1), Validators.max(999) ]),
   });
 
   ngOnInit() {
@@ -45,6 +45,8 @@ export class StoreeditpageComponent implements OnInit {
       this.products = data.map(e => {
         return {
           id: e.payload.doc.id,
+          productImageUrl: e.payload.doc.get('productImageUrl'),
+          productImagePath: e.payload.doc.get('productImagePath'),
           description: e.payload.doc.get('description'),
           name: e.payload.doc.get('name'),
           basePrice: e.payload.doc.get('basePrice'),
@@ -54,14 +56,22 @@ export class StoreeditpageComponent implements OnInit {
         } as Produtos;
       });
     });
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  processUploadedFile(uploadedFile) {
+  selectedFileChanged(selectedFile) {
+    this.currentlySelectedFile = selectedFile.target.files[0];
+  }
+
+  processUploadedFile(uploadedFile): Promise<any> {
+    return new Promise((resolve, reject) => {
     const n = Date.now();
-    const file = uploadedFile.target.files[0];
-    const filePath = `ProductImages/${n}`;
+    const name = uploadedFile.name.substring(0, 20).replace(/\s/g, '');
+    const file = uploadedFile;
+    const filePath = `product_images/${name}_${n}`;
     const fileRef = this.firestorage.ref(filePath);
-    const task = this.firestorage.upload(`RoomsImages/${n}`, file);
+    const task = this.firestorage.upload(`product_images/${name}_${n}`, file);
+    this.imagePath = filePath;
     task
       .snapshotChanges()
       .pipe(
@@ -69,9 +79,10 @@ export class StoreeditpageComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
-              this.fb = url;
+              this.imageUrl = url;
             }
-            console.log(this.fb);
+            console.log(this.imageUrl);
+            resolve(this.imageUrl);
           });
         })
       )
@@ -80,6 +91,7 @@ export class StoreeditpageComponent implements OnInit {
           console.log(url);
         }
       });
+    });
   }
 
   showSuccessToaster(message: string) {
@@ -92,15 +104,27 @@ export class StoreeditpageComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      let productDetails = this.productForm.value;
-      productDetails.basePrice = this.productForm.value.basePrice;
-      this.createProduct(productDetails)
-        .then(res => {
-          this.showSuccessToaster('O produto foi criado com sucesso!');
-          this.productForm.reset();
-      });}
+      this.processUploadedFile(this.currentlySelectedFile).then((res) => {
+        if (this.imageUrl) {
+          this.productForm.value.productImageUrl = this.imageUrl;
+          this.productForm.value.productImagePath = this.imagePath;
+          this.productForm.value.createdAt = Date.now();
+          this.productForm.value.updatedAt = Date.now();
+          let productDetails = this.productForm.value;
+          this.createProduct(productDetails)
+          .then(res => {
+            this.imageUrl = null;
+            this.productForm.reset();
+          });
+        }
+        else {
+          this.imageUrl = null;
+          this.showErrorToaster('F*ck. Ocorreu algo de errado ao dar upload do ficheiro! (URL do ficheiro após upload não encontrado, o upload falhou?)');
+        }
+      });
+    }
     else {
-      this.showErrorToaster('Tens algo de errado no que introduziste!');
+      this.showErrorToaster('YO! Tens algo de errado no que introduziste!');
     }
 }
 
@@ -109,18 +133,32 @@ export class StoreeditpageComponent implements OnInit {
       this.firestore
           .collection('produtos')
           .add(productDetails)
-          .then(res => {this.showSuccessToaster('O produto "' + productDetails.name + '" foi criado com sucesso!');},
+          .then(res => {this.showSuccessToaster('O produto "' + productDetails.name + '" foi criado com sucesso!');
+                        this.productForm.reset();
+                        this.imageUrl = null;
+          },
             err => reject(err));
     });
   }
 
+  updateForm(product) {
+    this.productForm.setValue({
+      name: product.name,
+      description: product.description,
+      basePrice: product.basePrice,
+      stock: product.stock,
+    });
+  }
+
   update(product: Produtos) {
+    console.log(product);
+    
     this.produtosService.updateProduct(product);
     this.showSuccessToaster('asd');
   }
 
-  deleteProduct(id: string, name: string) {
-      this.produtosService.deleteProduct(id);
-      this.showSuccessToaster('O produto "' + name + '" foi REMOVIDO!');
+  deleteProduct(id: string, name: string, productImagePath: string) {
+      this.produtosService.deleteProduct(id, productImagePath);
+      this.showSuccessToaster('O produto "' + name + '" foi REMOVIDO, juntamente com a sua imagem!');
   }
 }

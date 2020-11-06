@@ -57,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Auth service
 import { AuthService } from './auth.service';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
+import { TeampageComponent } from './teampage/teampage.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.c
     ShoppageComponent,
     LoginpageComponent,
     StoreeditpageComponent,
+    TeampageComponent,
   ],
   imports: [
     ReactiveFormsModule,

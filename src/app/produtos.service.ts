@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Produtos } from './produtos.model';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProdutosService {
   products: Observable<Produtos[]>;
   productsCollection: AngularFirestoreCollection<Produtos>;
 
-  constructor(private readonly firestore: AngularFirestore) { }
+  constructor(private readonly firestore: AngularFirestore, private readonly firestorage: AngularFireStorage) { }
 
   getAllProducts() {
     return this.firestore.collection('produtos', prod => prod.orderBy('updatedAt')).snapshotChanges();
@@ -37,8 +38,9 @@ export class ProdutosService {
     this.firestore.doc('produtos/' + product.id).update(product);
   }
 
-  deleteProduct(productId: string){
+  deleteProduct(productId: string, productImagePath: string){
     this.firestore.doc('produtos/' + productId).delete();
+    this.firestorage.ref(productImagePath).delete();
   }
 
 }
