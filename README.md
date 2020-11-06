@@ -3,6 +3,7 @@
 
 ### This is the almost complete source code for my website [20cafes.com](https://20cafes.com)
 *Some code was not included for security reasons (had private info and private access keys).*
+*Note: The webhost of this website is a little slow, please be patient opening it for the first time.*
 
 ### *What is "20Cafés/dia"?*
 It's a project (and a community) that me and 2 more friends are building. It focuses on being a portuguese technology and gaming community that everyone can join and be a part of. We mainly create [YouTube Content](https://bit.ly/20cafesyoutube) but we are also preset on [Twitch](https://twitch.tv/20cafespordia) where we do livestreams of tech events and watch the together with our viewers, where we play together, and where we do revies/unboxings and/or Desktop PCs/Hardware builds.
