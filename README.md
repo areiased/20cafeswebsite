@@ -18,7 +18,7 @@ This website is made using Angular 10, wrote in Typescript, HTML5 and SCSS. It u
 It connects to Google Firebase for some experimental storage and small database (im currently using it to create a small online e-commerce page on this same website, all from scratch).
 The website has Google Auth login and Google Accounts functionality, but currently is a function that is not supposed to be accessed publicly.
 
-### It was completely made from scratch by me: Eduardo Correia (owner of this github).
+#### *This was completely made from scratch by me: Eduardo Correia (owner of this github profile).*
 ### If you wanna contact me for professional enquiries, please do so!
 **My social and contact links:**
 * **My personal website** (hosted as a subdomain): [eduardocorreia.20cafes.com](eduardocorreia.20cafes.com)
