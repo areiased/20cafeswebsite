@@ -1,7 +1,5 @@
 # 20Cafés/dia Official Website
-### Created and Hosted by Eduardo Correia | Azenyr
-
-### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+### 100% Created and Hosted by Eduardo Correia | Azenyr
 
 ### This is the almost complete source code for my website [20cafes.com](https://20cafes.com)
 *Some code was not included for security reasons (had private info and private access keys).*
@@ -24,5 +22,9 @@ The website has Google Auth login and Google Accounts functionality, but current
 The website itself is hosted on a dedicated professional, paid web hosting platform, with encryption and an genuine paid SSL certificate in my name.
 The host is configured in a way that only accepts secure connections (HTTPS). If you try HTTP, it will instantly redirect you to HTTPS.
 
+
+#### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+
 *This github repository was only made public temporarily for professional reasons.*
+
 ***DO NOT COPY DO NOT REDISTRIBUTE DO NOT FORK***
