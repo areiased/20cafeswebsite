@@ -45,20 +45,19 @@
     
         .card-img-div {
             cursor: auto;
+            border-radius: 50%;
             flex: 400px 1 1;
             overflow: hidden;
             max-width: 200px;
-            padding: 10px;
+            max-height: 200px;
     
             img {
-                border-radius: 50%;
                 width: 200px;
-                height: 200px;
             }
         }
     
         .card-text {
-            padding: 0px 10px 0px 10px;
+            padding: 0px 10px 0px 20px;
             flex: 400px 5 5;
             max-width: 750px;
         }
