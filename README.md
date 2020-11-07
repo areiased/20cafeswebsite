@@ -22,9 +22,9 @@ The website has Google Auth login and Google Accounts functionality, but current
 #### *This was completely made from scratch by me: Eduardo Correia (owner of this github profile).*
 ### ⭐️ If you wanna contact me for professional enquiries, please do so!
 **My social and contact links:**
-* **My personal website** (hosted as a subdomain): [eduardocorreia.20cafes.com](eduardocorreia.20cafes.com)
-* [Old Personal Website](eduardocorreia.epizy.com)
-* [LinkedIn Profile](linkedin.com/in/eduardoxcorreia)
+* **My personal website** (hosted as a subdomain): [eduardocorreia.20cafes.com](http://eduardocorreia.20cafes.com)
+* [Old Personal Website](http://eduardocorreia.epizy.com)
+* [LinkedIn Profile](https://linkedin.com/in/eduardoxcorreia)
 * [More ways to contact me!](http://eduardocorreia.20cafes.com/contactspage)
 
 The website itself is hosted on a dedicated professional, paid web hosting platform, with encryption and an genuine paid SSL certificate in my name.
