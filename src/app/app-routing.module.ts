@@ -8,9 +8,10 @@ import { Page404Component } from './page404/page404.component';
 import { ProjectspageComponent } from './projectspage/projectspage.component';
 import { ShoppageComponent } from './shoppage/shoppage.component';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
+import { TeampageComponent } from './teampage/teampage.component';
+import { ClickergameComponent } from './clickergame/clickergame.component';
 
 import { AuthGuard } from './shared/guard/auth.guard';
-import { TeampageComponent } from './teampage/teampage.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'equipa', component: TeampageComponent },
   { path: 'loja', component: ShoppageComponent},
   { path: 'abacalhar', component: LoginpageComponent},
+  { path: 'clickergame', component: ClickergameComponent},
   { path: 'editarloja', component: StoreeditpageComponent, canActivate: [AuthGuard]}, // , canActivate: [AuthGuard]
 
   {path: '404', component: Page404Component}, // handle 404 redirect

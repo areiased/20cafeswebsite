@@ -21,9 +21,9 @@
                             <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
                             <span class="text">Merchandise</span>
                         </a>
-                        <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'blog' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">sticky_note_2</i>
-                            <span class="text" >Blog</span>
+                        <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'clickergame' ]" routerLinkActive="active-link" matRipple>
+                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">sports_esports</i>
+                            <span class="text" >Jogo 20Clicker</span>
                         </div>
                         <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple>
                             <i class="material-icons" style="margin: 0px 3px 0px 0px;">topic</i>
@@ -56,9 +56,9 @@
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
                         <span class="about-link">Merchandise</span>
                     </a>
-                    <div class="link" [routerLink]="[ 'blog' ]" routerLinkActive="active-link" matRipple matTooltip="Onde postamos as nossas grandes novidades! Ainda em construção.">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">sticky_note_2</i>
-                        <span class="forum-link" >Blog</span>
+                    <div class="link" [routerLink]="[ 'clickergame' ]" routerLinkActive="active-link" matRipple matTooltip="Experimenta o nosso próprio jogo, feito por nós! Ainda está em desenvolvimento!">
+                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">sports_esports</i>
+                        <span class="forum-link" >Jogo 20Clicker</span>
                     </div>
                     <div class="link" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple matTooltip="A nossa lista dos melhores projetos que já criamos! Ainda em construção.">
                         <i class="material-icons" style="margin: 0px 3px 0px 0px;">topic</i>
@@ -79,11 +79,14 @@
                 <i class="material-icons" style="margin: 0px 3px 0px 0px;">exit_to_app</i>
             </div>
 
-            <div class="link link-alignedright" matRipple matTooltip="Mantém o contacto com a comunidade no Twitch!"
-            onClick="MyWindow=window.open('https://www.twitch.tv/embed/20cafespordia/chat?parent=20cafes.com','20Cafés - Janela do Twitch Chat','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">
+            <div class="link link-alignedright" [matMenuTriggerFor]="menu" matRipple matTooltip="Mantém o contacto com a comunidade no Twitch!">
                 <i class="material-icons" style="margin: 0px 3px 0px 0px;">chat</i>
                 <span class="chat-link">20Cafés Chat</span>
             </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item onClick="MyWindow=window.open('https://www.twitch.tv/embed/20cafespordia/chat?parent=20cafes.com','20Cafés - Janela do Twitch Chat','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">Twitch/Stream Chat</button>
+                <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/Sg4Ntxa','20Cafés - Janela do Discord','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">Comunidade Discord</button>
+            </mat-menu>
         </div>
     </div>
 
@@ -104,6 +107,7 @@
     <div class="pagecontent-outerdiv">
         <div class="page-content">
             <router-outlet></router-outlet>
+            <app-sociallinks></app-sociallinks>
         </div>
 
         <div class="footer">

@@ -58,6 +58,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
 import { TeampageComponent } from './teampage/teampage.component';
+import { ClickergameComponent } from './clickergame/clickergame.component';
+import { SociallinksComponent } from './sociallinks/sociallinks.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { TeampageComponent } from './teampage/teampage.component';
     LoginpageComponent,
     StoreeditpageComponent,
     TeampageComponent,
+    ClickergameComponent,
+    SociallinksComponent,
   ],
   imports: [
     ReactiveFormsModule,
