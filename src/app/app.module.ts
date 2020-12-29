@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AdsenseModule } from 'ng2-adsense';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+
+import { NgParticlesModule } from 'ng-particles';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,12 +58,17 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// Disqus module
+import { DisqusModule } from "ngx-disqus";
+
 // Auth service
 import { AuthService } from './auth.service';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
 import { TeampageComponent } from './teampage/teampage.component';
 import { ClickergameComponent } from './clickergame/clickergame.component';
 import { SociallinksComponent } from './sociallinks/sociallinks.component';
+import { GamespageComponent } from './gamespage/gamespage.component';
+import { TodoappComponent } from './todoapp/todoapp.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +84,8 @@ import { SociallinksComponent } from './sociallinks/sociallinks.component';
     TeampageComponent,
     ClickergameComponent,
     SociallinksComponent,
+    GamespageComponent,
+    TodoappComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -120,6 +131,12 @@ import { SociallinksComponent } from './sociallinks/sociallinks.component';
     MatSortModule,
     MatPaginatorModule,
     MatRippleModule,
+    NgParticlesModule,
+    HttpClientModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-5746584168388916',
+    }),
+    DisqusModule.forRoot('20cafes'),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

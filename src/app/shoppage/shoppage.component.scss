@@ -5,7 +5,7 @@
 }
 
 .top-text {
-    margin: 20px;
+    margin: 20px 0px;
     width: 100%;
     text-align: center;
 
@@ -16,6 +16,14 @@
     p {
         font-size: 12px;
     }
+}
+
+h1 {
+    font-size: 18px;
+}
+
+small {
+    font-size: smaller;
 }
 
 .shop-cards {
@@ -30,14 +38,14 @@
     .item-card {
         border-radius: 10px;
         margin: 5px;
+        padding: 5px;
         background-color: rgb(240,240,240);
         width: 100%;
         min-height: 200px;
         max-width: 300px;
         height: fit-content;
         flex: 300px 1 1;
-        transition: 0.4s all;
-        padding: 20px;
+        transition: 0.6s ease-out all;
         transform: scale(1);
         display: flex;
         flex-direction: column;
@@ -52,56 +60,68 @@
         &:focus {
             box-shadow: 0px 0px 8px grey;
             transform: scale(1.005);
-            transition: 0.2s all;
+            transition: 0.3s;
         }
 
         .item-image {
             padding: 5px;
-            object-fit: contain;
+            
 
             img {
                 width: 100%;
                 height: 100%;
                 max-height: 300px;
+                border-radius: 10px;
                 object-fit: contain;
+                overflow: hidden;
             }
         }
 
         .item-details {
-            align-self: flex-start;
-            width: 100%;
+            width: 92%;
         }
 
         .item-buttons {
-            align-self: flex-end;
+            align-self: center;
             margin-top: 10px;
             width: 100%;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-evenly;
+            justify-content: center;
             align-items: center;
         }
     }
 }
 
-.editproduct-card {
-    border-radius: 10px;
-    width: 100%;
-    max-width: 800px;
+.productDetailsView {
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
     justify-content: center;
-}
+    align-items: center;
+    pointer-events: none;
 
-.form-input {
-    width: 100%;
-    height: 50px;
-    margin: 5px;
-}
+    .item-card {
+        pointer-events: all;
+        width: 100%;
+        max-width: 1000px;
+        &:hover {
+            transform: none;
+        }
 
-.form-button {
-    margin: 5px;
+        .item-image {
+            img {
+                max-height: 600px;
+            }
+        }
+    }
 }

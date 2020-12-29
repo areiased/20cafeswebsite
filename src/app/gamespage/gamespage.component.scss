@@ -1,0 +1,104 @@
+@import "../../styles.scss";
+
+@keyframes FadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes SlideFromLeft {
+    0% { transform: translateX(-100vw); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes ZoomOut {
+    0% { opacity: 0; transform: scale(4); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+    font-size: 28px;
+    text-align: center;
+}
+
+small {
+    font-size: smaller;
+    text-align: center;
+}
+
+.wholegamepagediv {
+    width: 100vw;
+    animation: 0.3s WholePageOpenDropDown ease-out 0s forwards;
+
+    .gamediv {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+
+        .loadingscreendiv {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            width: 100vw;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            animation: 0.2s SlideFromLeft ease-in 0s forwards, 0.6s ZoomOut ease-out reverse 1.5s forwards;
+        }
+
+        .gameimg {
+            width: 100%;
+            max-width: 600px;
+            height: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .game {
+            width: 100vw;
+            height: 100%;
+            background-color: transparent;
+            z-index: 1000;
+
+            .gamebuttons {
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                width: 100%;
+                height: 50px;
+                position: sticky;
+                position: -webkit-sticky;
+                top: 40px;
+                left: 0;
+                z-index: 1100;
+    
+                .gamebutton {
+                    margin: 0px 5px;
+                }
+            }
+        }
+
+    }
+    .gamefullscreen {
+        position: absolute;
+        z-index: 5000;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        background-color: black;
+    }
+}

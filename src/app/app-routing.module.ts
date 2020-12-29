@@ -9,9 +9,10 @@ import { ProjectspageComponent } from './projectspage/projectspage.component';
 import { ShoppageComponent } from './shoppage/shoppage.component';
 import { StoreeditpageComponent } from './shoppage/storeeditpage/storeeditpage.component';
 import { TeampageComponent } from './teampage/teampage.component';
-import { ClickergameComponent } from './clickergame/clickergame.component';
+import { GamespageComponent } from './gamespage/gamespage.component';
 
 import { AuthGuard } from './shared/guard/auth.guard';
+import { TodoappComponent } from './todoapp/todoapp.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -21,8 +22,9 @@ const routes: Routes = [
   { path: 'equipa', component: TeampageComponent },
   { path: 'loja', component: ShoppageComponent},
   { path: 'abacalhar', component: LoginpageComponent},
-  { path: 'clickergame', component: ClickergameComponent},
+  { path: 'games', component: GamespageComponent},
   { path: 'editarloja', component: StoreeditpageComponent, canActivate: [AuthGuard]}, // , canActivate: [AuthGuard]
+  { path: 'todoapp', component: TodoappComponent, canActivate: [AuthGuard]}, // , canActivate: [AuthGuard]
 
   {path: '404', component: Page404Component}, // handle 404 redirect
   {path: '**', redirectTo: '/404'}

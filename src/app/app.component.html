@@ -4,41 +4,40 @@
         <div class="navbar-div" (scroll)="onWindowScroll($event);">
             <div class="navbar">
                 <div class="navbar-logo-div" [routerLink]="[ '' ]" matRipple matTooltip="Ir para a página inicial"><img class="navbar-logo" src="../assets/img/logoonly_blue.png" alt=""></div>
-                <!-- <div class="link" ><nav class="home-link">Início</nav></div> -->
 
                 <!-- hamburger menu start -->
-                <nav class="hamb-menu-button" (click)="openMenu()" matRipple><i class="material-icons" style="margin: 0px 5px 0px 0px;">menu</i> Menu</nav>
+                <nav class="hamb-menu-button" (click)="openMenu()" matRipple><mat-icon tyle="margin: 0px 5px 0px 0px;">menu</mat-icon> Menu</nav>
 
                 <div class="hamburger-menu-div" id="hamburger-menu-div">
                     <div class="hamb-links-div">
-                        <div class="closebtn" (click)="closeMenu()" matRipple><i class="material-icons">close</i></div>
+                        <div class="closebtn" (click)="closeMenu()" matRipple><mat-icon>close</mat-icon></div>
                         <nav style="height: 40px; color: white; font-weight: 700;">Olá! Para onde queres ir? ☕️</nav>
                         <div class="link-hamb link-loja" (click)="closeMenu()" [routerLink]="[ 'loja' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">storefront</mat-icon>
                             <span class="loja-link-text" >Loja Oficial</span>
                         </div>
                         <a class="link-hamb" (click)="closeMenu()" href="https://teespring.com/stores/20cafes" matRipple  target="_blank" rel="noreferrer noopener">
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">checkroom</mat-icon>
                             <span class="text">Merchandise</span>
                         </a>
-                        <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'clickergame' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">sports_esports</i>
-                            <span class="text" >Jogo 20Clicker</span>
+                        <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'games' ]" routerLinkActive="active-link" matRipple>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">sports_esports</mat-icon>
+                            <span class="text" >Jogos 20Cafés</span>
                         </div>
                         <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">topic</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">topic</mat-icon>
                             <span class="text">Projetos</span>
                         </div>
                         <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'equipa' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">people_alt</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">people_alt</mat-icon>
                             <span class="text">Equipa</span>
                         </div>
                         <div class="link-hamb" (click)="closeMenu()" [routerLink]="[ 'sobre' ]" routerLinkActive="active-link" matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">info</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">info</mat-icon>
                             <span class="text">Sobre</span>
                         </div>
                         <div *ngIf="authService.userData" (click)="closeMenu()" class="link-hamb" (click)="authService.SignOut()"  matRipple>
-                            <i class="material-icons" style="margin: 0px 3px 0px 0px;">exit_to_app</i>
+                            <mat-icon style="margin: 0px 3px 0px 0px;">exit_to_app</mat-icon>
                             <span class="text">Logout</span>
                         </div>
                         <div *ngIf="authService.userData as user">Ligado como {{(user.displayName) ? user.displayName : 'User'}}</div>
@@ -49,70 +48,68 @@
                 <!-- end of hamburger menu -->
                 <div class="menu-buttons">
                     <div class="link link-loja" [routerLink]="[ 'loja' ]" routerLinkActive="active-link" matRipple matTooltip="Local onde vamos vender os nossos 3D Prints transformados em acessórios incríveis, a preços mínimos. Ainda não está pronto, volta mais tarde!">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">storefront</i>
+                        <mat-icon style="margin: 0px 3px 0px 0px;">storefront</mat-icon>
                         <span class="loja-link-text" >Loja Oficial</span>
                     </div>
                     <a class="link link-merch" href="https://teespring.com/stores/20cafes" matRipple matTooltip="RECOMENDADO! Arte criada por nós em produtos que vais adorar!"  target="_blank" rel="noreferrer noopener">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">checkroom</i>
+                        <mat-icon style="margin: 0px 3px 0px 0px;">checkroom</mat-icon>
                         <span class="about-link">Merchandise</span>
                     </a>
-                    <div class="link" [routerLink]="[ 'clickergame' ]" routerLinkActive="active-link" matRipple matTooltip="Experimenta o nosso próprio jogo, feito por nós! Ainda está em desenvolvimento!">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">sports_esports</i>
-                        <span class="forum-link" >Jogo 20Clicker</span>
+                    <div class="link" [routerLink]="[ 'games' ]" routerLinkActive="active-link" matRipple matTooltip="Experimenta o nosso próprio jogo, feito por nós! Ainda está em desenvolvimento!">
+                        <mat-icon style="margin: 0px 3px 0px 0px;">sports_esports</mat-icon>
+                        <span class="forum-link" >Jogos 20Cafés</span>
                     </div>
                     <div class="link" [routerLink]="[ 'projetos' ]" routerLinkActive="active-link" matRipple matTooltip="A nossa lista dos melhores projetos que já criamos! Ainda em construção.">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">topic</i>
+                        <mat-icon style="margin: 0px 3px 0px 0px;">topic</mat-icon>
                         <span class="projects-link">Projetos</span>
                     </div>
                     <div class="link" [routerLink]="[ 'equipa' ]" routerLinkActive="active-link" matRipple matTooltip="Conhece a equipa de produtores de conteúdo de 20Cafés/dia! Ainda em construção.">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">people_alt</i>
+                        <mat-icon style="margin: 0px 3px 0px 0px;">people_alt</mat-icon>
                         <span class="team-link">Equipa</span>
                     </div>
                     <div class="link" [routerLink]="[ 'sobre' ]" routerLinkActive="active-link" matRipple matTooltip="Descobre o que é o 20Cafés/dia!">
-                        <i class="material-icons" style="margin: 0px 3px 0px 0px;">info</i>
+                        <mat-icon style="margin: 0px 3px 0px 0px;">info</mat-icon>
                         <span class="about-link">Sobre</span>
                     </div>
                 </div>
             </div>
-            <div *ngIf="authService.userData as user" style="width: 120px;">Ligado:<br>{{(user.displayName) ? user.displayName : 'User'}}</div>
-            <div *ngIf="authService.userData" class="link link-alignedright" (click)="authService.SignOut()"  matRipple matTooltip="Sair da conta" style="width: fit-content; border-radius: 0px; background-color: transparent; margin-right: 20px;">
-                <i class="material-icons" style="margin: 0px 3px 0px 0px;">exit_to_app</i>
+            <div *ngIf="authService.userData as user"><img src="{{user.photoURL}}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;" alt="User Avatar"></div>
+            <div *ngIf="authService.userData as user" style="width: fit-content; margin: 0px 5px;">{{(user.displayName) ? user.displayName : 'User'}} <br> {{(user.email) ? user.email : 'Email'}}</div>
+            <div *ngIf="authService.userData" class="link link-alignedright" (click)="authService.SignOut()"  matRipple matTooltip="Sair da conta" style="width: 50px; border-radius: 0px; background-color: transparent; margin-right: 20px;">
+                <mat-icon>exit_to_app</mat-icon>
             </div>
 
-            <div class="link link-alignedright" [matMenuTriggerFor]="menu" matRipple matTooltip="Mantém o contacto com a comunidade no Twitch!">
-                <i class="material-icons" style="margin: 0px 3px 0px 0px;">chat</i>
+            <div class="link link-alignedright" [matMenuTriggerFor]="menu" matRipple matTooltip="Mantém o contacto com a comunidade!">
+                <mat-icon>chat</mat-icon>
                 <span class="chat-link">20Cafés Chat</span>
             </div>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item onClick="MyWindow=window.open('https://www.twitch.tv/embed/20cafespordia/chat?parent=20cafes.com','20Cafés - Janela do Twitch Chat','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">Twitch/Stream Chat</button>
-                <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/Sg4Ntxa','20Cafés - Janela do Discord','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;">Comunidade Discord</button>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <p style="padding: 5px 10px;">Mantém o contacto com a comunidade!<br>Escolhe a tua esplanada:</p>
+                <button mat-menu-item onClick="MyWindow=window.open('https://reddit.com/r/20cafes','20Cafés - Reddit','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;"><mat-icon>forum</mat-icon>NOVO! Comunidade Reddit 🔥</button>
+                <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/Sg4Ntxa','20Cafés - Janela do Discord','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;"><mat-icon>forum</mat-icon>Comunidade Discord 👾</button>
+                <button mat-menu-item onClick="MyWindow=window.open('https://www.twitch.tv/popout/20cafespordia/chat?popout=','20Cafés - Janela do Twitch Chat','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=600'); return false;"><mat-icon>forum</mat-icon>Twitch Chat ☕️</button>
             </mat-menu>
         </div>
     </div>
-
+    <Particles [options]="particlesOptions" style="position: fixed; z-index: -500; top:0; left: 0; width: 100vw; height: 100vh;"></Particles>
     <div class="pagelogo">
-
         <div class="background-img-div">
-            <img src="../assets/img/background.jpg" alt="background" class="bg-image">
-            
             <div class="logo">
                 <a href="https://20cafes.com">
                     <img src="../assets/img/20cafeslogo2.png" alt="20Cafes main logo" class="logo-image">
                 </a>
             </div>
         </div>
-
     </div>
-
     <div class="pagecontent-outerdiv">
         <div class="page-content">
-            <router-outlet></router-outlet>
+            <router-outlet (gameIsFullscreen)="gameIsFullscreen($event)"></router-outlet>
             <app-sociallinks></app-sociallinks>
         </div>
 
         <div class="footer">
-            <span> Copyright © 2020 - 20Cafes/dia<br>
-                <small style="font-size: 70%;">Created by
+            <span style="font-size: 12px;"> Copyright © 2020 - 20Cafes/dia<br>
+                <small style="font-size: 10px;">Created by
                     <a href="http://eduardocorreia.20cafes.com" alt="Visit Portfolio" matTooltip="Visitar o Portfolio / Visit Portofolio">
                         Eduardo Correia - Fullstack Web Developer
                     </a>

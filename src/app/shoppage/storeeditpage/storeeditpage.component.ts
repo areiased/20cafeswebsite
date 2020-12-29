@@ -18,11 +18,13 @@ export class StoreeditpageComponent implements OnInit {
 
   downloadURL: Observable<string>;
   public imageUrl: string = null;
-  imagePath: string = null;
+  public imagePath: string = null;
   public currentlySelectedFile: any = null;
+  public currentlySelectedImagePreview: any = null;
   products: Produtos[];
   productsCollection: AngularFirestoreCollection;
   user: any;
+  editingProduct = false;
 
   constructor(private produtosService: ProdutosService,
               public authService: AuthService,
@@ -32,12 +34,13 @@ export class StoreeditpageComponent implements OnInit {
               ) {}
 
   productForm = new FormGroup({
+    id: new FormControl({value: '', disabled: true}),
     name: new FormControl('', [ Validators.required, Validators.minLength(4), Validators.maxLength(30) ]),
-    description: new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(200) ]),
+    description: new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(1000) ]),
     basePrice: new FormControl('', [ Validators.required, Validators.minLength(4), Validators.maxLength(6),
       Validators.pattern('^[0-9]\\d*(\\.\\d{1,2})?$') ]),
     stock: new FormControl('', [ Validators.required, Validators.minLength(1), Validators.maxLength(3),
-      Validators.min(1), Validators.max(999) ]),
+      Validators.min(0), Validators.max(999) ]),
   });
 
   ngOnInit() {
@@ -61,16 +64,23 @@ export class StoreeditpageComponent implements OnInit {
 
   selectedFileChanged(selectedFile) {
     this.currentlySelectedFile = selectedFile.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile.target.files[0]);
+    reader.onload = (_event) => { 
+      this.currentlySelectedImagePreview = reader.result; 
+    }
   }
 
   processUploadedFile(uploadedFile): Promise<any> {
     return new Promise((resolve, reject) => {
-    const n = Date.now();
+    this.imagePath = null;
+    this.imageUrl = null;
+    const dateNow = new Date();
     const name = uploadedFile.name.substring(0, 20).replace(/\s/g, '');
     const file = uploadedFile;
-    const filePath = `product_images/${name}_${n}`;
+    const filePath = `product_images/${name}_${dateNow.toISOString()}`;
     const fileRef = this.firestorage.ref(filePath);
-    const task = this.firestorage.upload(`product_images/${name}_${n}`, file);
+    const task = this.firestorage.upload(`product_images/${name}_${dateNow.toISOString()}`, file);
     this.imagePath = filePath;
     task
       .snapshotChanges()
@@ -104,24 +114,43 @@ export class StoreeditpageComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      this.processUploadedFile(this.currentlySelectedFile).then((res) => {
-        if (this.imageUrl) {
-          this.productForm.value.productImageUrl = this.imageUrl;
-          this.productForm.value.productImagePath = this.imagePath;
-          this.productForm.value.createdAt = Date.now();
-          this.productForm.value.updatedAt = Date.now();
-          let productDetails = this.productForm.value;
-          this.createProduct(productDetails)
-          .then(res => {
-            this.imageUrl = null;
-            this.productForm.reset();
-          });
-        }
-        else {
+      if (!this.imageUrl) {
+        this.processUploadedFile(this.currentlySelectedFile).then((res) => {
+          if (this.imageUrl) {
+            const dateNow = new Date();
+            this.productForm.value.productImageUrl = this.imageUrl;
+            this.productForm.value.productImagePath = this.imagePath;
+            this.productForm.value.createdAt = dateNow.toISOString();
+            this.productForm.value.updatedAt = dateNow.toISOString();
+            let productDetails = this.productForm.value;
+            this.createProduct(productDetails)
+            .then(res => {
+              this.imageUrl = null;
+              this.imagePath = null;
+              this.currentlySelectedFile = null;
+              this.productForm.reset();
+            });
+          }
+          else {
+            this.showErrorToaster('Ocorreu algo de errado ao dar upload do ficheiro! (URL do ficheiro após upload não encontrado, o upload falhou?)');
+          }
+        });
+      }
+      if (this.imageUrl) {
+        const dateNow = new Date();
+        this.productForm.value.productImageUrl = this.imageUrl;
+        this.productForm.value.productImagePath = this.imagePath;
+        this.productForm.value.createdAt = dateNow.toISOString();
+        this.productForm.value.updatedAt = dateNow.toISOString();
+        let productDetails = this.productForm.value;
+        this.createProduct(productDetails)
+        .then(res => {
           this.imageUrl = null;
-          this.showErrorToaster('F*ck. Ocorreu algo de errado ao dar upload do ficheiro! (URL do ficheiro após upload não encontrado, o upload falhou?)');
-        }
-      });
+          this.imagePath = null;
+          this.currentlySelectedFile = null;
+          this.productForm.reset();
+        });
+      }
     }
     else {
       this.showErrorToaster('YO! Tens algo de errado no que introduziste!');
@@ -136,13 +165,20 @@ export class StoreeditpageComponent implements OnInit {
           .then(res => {this.showSuccessToaster('O produto "' + productDetails.name + '" foi criado com sucesso!');
                         this.productForm.reset();
                         this.imageUrl = null;
+                        this.imagePath = null;
+                        this.currentlySelectedFile = null;
+                        this.currentlySelectedImagePreview = null;
           },
             err => reject(err));
     });
   }
 
   updateForm(product) {
+    this.editingProduct = true;
+    this.imagePath = product.productImagePath;
+    this.imageUrl = product.productImageUrl;
     this.productForm.setValue({
+      id: product.id,
       name: product.name,
       description: product.description,
       basePrice: product.basePrice,
@@ -150,15 +186,51 @@ export class StoreeditpageComponent implements OnInit {
     });
   }
 
-  update(product: Produtos) {
-    console.log(product);
-    
-    this.produtosService.updateProduct(product);
-    this.showSuccessToaster('asd');
+  cancelProductEdit() {
+    this.productForm.reset();
+    this.imageUrl = null;
+    this.imagePath = null;
+    this.currentlySelectedFile = null;
+    this.editingProduct = false;
+    this.currentlySelectedImagePreview = null;
+  }
+
+  updateProduct() {
+    if (this.productForm.valid) {
+      const id = this.productForm.getRawValue().id;
+
+      if (this.currentlySelectedFile) {
+        this.produtosService.deleteProductImage(this.imagePath); // delete old image
+        this.imagePath = null;
+        this.imageUrl = null;
+        this.processUploadedFile(this.currentlySelectedFile) // create and upload new image, returns path and URL to imagePath and imageUrl vars
+        .then((res) => {
+          this.produtosService.updateProduct(id, this.productForm.getRawValue(), this.imagePath, this.imageUrl);
+          this.productForm.reset();
+          this.imageUrl = null;
+          this.imagePath = null;
+          this.editingProduct = false;
+          this.currentlySelectedFile = null;
+          this.currentlySelectedImagePreview = null;
+          this.showSuccessToaster('O produto foi atualizado com sucesso.');
+        });
+      } else {
+        this.produtosService.updateProduct(id, this.productForm.getRawValue(), this.imagePath, this.imageUrl);
+        this.productForm.reset();
+        this.imageUrl = null;
+        this.imagePath = null;
+        this.editingProduct = false;
+        this.currentlySelectedFile = null;
+        this.currentlySelectedImagePreview = null;
+        this.showSuccessToaster('O produto foi atualizado com sucesso.');
+      }
+    } else {
+      this.showErrorToaster('Oops, algo correu mal! Verifica se tens os campos todos corretos.');
+    }
   }
 
   deleteProduct(id: string, name: string, productImagePath: string) {
       this.produtosService.deleteProduct(id, productImagePath);
-      this.showSuccessToaster('O produto "' + name + '" foi REMOVIDO, juntamente com a sua imagem!');
+      this.showSuccessToaster('O produto "' + name + '" foi REMOVIDO com sucesso, juntamente com a sua imagem!');
   }
 }

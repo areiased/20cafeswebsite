@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ShoppageComponent implements OnInit {
 
+  currentlySelectedProductId: null;
   products: Produtos[];
   productsCollection: AngularFirestoreCollection;
 
@@ -45,4 +46,11 @@ export class ShoppageComponent implements OnInit {
     });
   }
 
+  viewProduct(productId) {
+    this.currentlySelectedProductId = productId;
+  }
+
+  closeProduct(productId) {
+    this.currentlySelectedProductId = null;
+  }
 }

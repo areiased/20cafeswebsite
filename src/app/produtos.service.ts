@@ -33,9 +33,16 @@ export class ProdutosService {
   //   return this.firestore.collection('produtos').add(product);
   // }
 
-  updateProduct(product: Produtos){
-    delete product.id;
-    this.firestore.doc('produtos/' + product.id).update(product);
+  updateProduct(id: string, product: Produtos, imagePath: string, imageUrl: string){
+    const dateNow = new Date();
+    product.productImagePath = imagePath;
+    product.productImageUrl = imageUrl;
+    product.updatedAt = dateNow.toISOString();
+    this.firestore.doc(`produtos/${id}`).update(product);
+  }
+
+  deleteProductImage(productImagePath: string) {
+    this.firestorage.ref(productImagePath).delete();
   }
 
   deleteProduct(productId: string, productImagePath: string){

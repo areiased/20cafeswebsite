@@ -17,12 +17,20 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.userData) {
-      this.router.navigate(['404']);
-    }
-    if (this.authService.userData.email !== '20cafesaodia@gmail.com') {
-      this.router.navigate(['404']);
-    }
+
+      if (!JSON.parse(localStorage.getItem('user'))) {
+        this.router.navigate(['abacalhar']);
+      }
+      if (JSON.parse(localStorage.getItem('user')).email !== '20cafesaodia@gmail.com') {
+        this.router.navigate(['404']);
+      }
+      
+    // if (!this.authService.userData) {
+    //   this.router.navigate(['404']);
+    // }
+    // if (this.authService.userData.email !== '20cafesaodia@gmail.com') {
+    //   this.router.navigate(['404']);
+    // }
     return true;
   }
 }

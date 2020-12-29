@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>20Cafés/dia Chat</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+
+            }
+            body {
+                font: 13px Helvetica, Arial;
+                width: 100vw;
+                
+                height: 100vh;
+            }
+            form {
+                background: #fff;
+                padding: 3px;
+                bottom: 0;
+                width: 100%;
+                max-width: 600px;
+                height: 100%;
+                max-height: 500px;
+                position: absolute;
+                left: 0;
+
+            }
+            form textarea {
+                border: 1px solid lightgrey;
+                border-radius: 10px;
+                padding: 10px;
+                width: 90%;
+            }
+            form button {
+                cursor: pointer;
+                width: 80px;
+                color: white;
+                background: rgb(37, 197, 250);
+                border: none;
+                padding: 10px;
+                margin: 10px;
+            }
+            #messages {
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                list-style-type: none;
+                margin: 10px;
+                padding: 0;
+            }
+            #messages li {
+                margin: 8px 0px;
+                padding: 10px 20px;
+                border-radius: 20px;
+                background: rgb(231, 231, 231);
+                max-width: fit-content;
+                word-wrap: normal;
+            }
+            #messages li:nth-child(odd) {
+                background-color: rgb(187, 223, 211);
+            }
+        </style>
+    </head>
+    <body>
+        <span style="margin: 10px;">
+            Utilizador atual: ${username};
+            <a href="">Logout</a>
+        </span>
+        <ul id="messages"></ul>
+        <form action="">
+            <textarea cols="50" rows="2" id="messageInput" autocomplete="off" required ></textarea><button type="submit" style="border-radius: 10px; right: 5px;">Enviar</button>
+        </form>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(function () {
+              var socket = io();
+              const username = "";
+              $('form').submit(function(e){
+                e.preventDefault(); // prevents page reloading
+                socket.emit('chat message', $('#messageInput').val());
+                $('#messageInput').val('');
+                return false;
+              });
+              socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+              });
+              socket.on('userconnect', function(msg){
+                $('#messages').append($('<li style="color: grey; background-color: transparent; margin: 2px;">').text(msg));
+              });
+            });
+
+            $("#messageInput").keypress(function (e) {
+                if(e.which == 13 && !e.shiftKey) {        
+                    $(this).closest("form").submit();
+                    e.preventDefault();
+                }
+            });
+          </script>
+    </body>
+</html>

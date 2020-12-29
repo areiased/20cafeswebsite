@@ -1,0 +1,147 @@
+<div class="wholegamepagediv">
+    <br />
+    <div class="divider"></div>
+    <h1>☕️ 20Cafés Game Studios - Jogos Oficiais 🎮</h1>
+    <div class="divider"></div>
+    <br />
+    <div class="gamediv">
+        <div class="loadingscreendiv" *ngIf="loadingScreen">
+            <mat-spinner></mat-spinner><br />Aguarda... <br />
+            <p style="font-size: 12px">20Cafés/dia</p>
+        </div>
+        <h1 style="font-size: 22px">20Clicker Game</h1>
+        <br />
+        <img
+            *ngIf="currentGameId === 0 || !currentGameId"
+            class="gameimg"
+            src="../../assets/games_files/games_previewimages/20clickerpreview.jpg"
+            alt="Previa do jogo 20clicker"
+        />
+        <br />
+        <p style="text-align: center">
+            Achas que consegues salvar todos os cafezitos antes que o tempo
+            acabe, e sem rebentar uma bomba? <br />
+            Um jogo simples mas extremamente desafiante e que fica
+            progressivamente mais difícil. Até onde chegas? <br />
+            Versão 1.0 (Irá ter updates, claro! Tens ideias? Conta-nos nos nosso
+            Reddit ou Discord!)
+        </p>
+        <br />
+        <nav
+            style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            "
+        >
+            <nav
+                matRipple
+                class="mainbutton"
+                *ngIf="currentGameId === 0 || !currentGameId"
+                (click)="openGame(1)"
+                color="primary"
+            >
+                Abrir aqui o 20Clicker
+            </nav>
+            <a
+                *ngIf="!currentGameId"
+                href="https://play.google.com/store/apps/details?id=com.vintecafes.clickergame01"
+            >
+                <img
+                    src="../../assets/logos/getit_on_gplay_pt.png"
+                    style="width: 180px; margin: 5px 5px 0px 10px"
+                    alt="Disponivel na Google Play Store!"
+                />
+            </a>
+        </nav>
+        <p *ngIf="buttonMessage">{{ buttonMessage }}</p>
+        <p *ngIf="gameButtonError">{{ gameButtonError }}</p>
+        <br />
+        <small
+            style="text-align: center"
+            *ngIf="currentGameId === 0 || !currentGameId"
+            >Nota: Ao clicar no botão irás fazer download temporário de cerca de
+            35MB para correr o jogo. Isto poderá levar algum tempo! <br />
+            Ao abrires o jogo, a animação de fundo do site será pausada. Se
+            saires ou minimizares a janela do jogo, ele será fechado.</small
+        >
+        <div
+            class="game"
+            ngClass="'gamefullscreen' : gameFullscreen"
+            #gameElement
+        >
+            <div class="gamebuttons" *ngIf="currentGameId">
+                Estás a jogar: {{ gameName[currentGameId] }}
+                <button
+                    class="gamebutton"
+                    *ngIf="!gameFullscreen"
+                    matTooltip="Tentar colocar o jogo em ecrã inteiro. Esta opção nem sempre funciona em dispositivos móveis"
+                    (click)="gameGoFullscreen(true)"
+                    mat-raised-button
+                    color="primary"
+                >
+                    Ecrã Inteiro
+                </button>
+                <button
+                    class="gamebutton"
+                    *ngIf="gameFullscreen"
+                    (click)="gameGoFullscreen(false)"
+                    mat-raised-button
+                    color="primary"
+                >
+                    Sair de Ecrã Inteiro
+                </button>
+                <button
+                    class="gamebutton"
+                    matTooltip="Abrir em Popup/Janela dedicada poderá dar melhor desempenho"
+                    (click)="popupGame(currentGameId)"
+                    mat-raised-button
+                    color="primary"
+                >
+                    Abrir em Popup
+                </button>
+                <button
+                    class="gamebutton"
+                    matTooltip="Fechar o jogo imediatamente"
+                    (click)="closeGame()"
+                    mat-raised-button
+                    color="accent"
+                >
+                    Fechar Jogo
+                </button>
+                <p *ngIf="closeButtonError">{{ closeButtonError }}</p>
+            </div>
+            <app-clickergame
+                (gameIsLoaded)="gameIsLoadedTrue()"
+                *ngIf="currentGameId === 1"
+            ></app-clickergame>
+        </div>
+        <a
+            *ngIf="currentGameId"
+            href="https://play.google.com/store/apps/details?id=com.vintecafes.clickergame01"
+        >
+            <img
+                src="../../assets/logos/getit_on_gplay_pt.png"
+                style="width: 150px; margin: 5px"
+                alt="Disponivel na Google Play Store!"
+            />
+        </a>
+        <small
+            >©2020, 20Cafés/dia - Made by Henrique, Team 20Cafés/dia. Music by
+            Eduardo ("Azenyr" on YouTube).</small
+        >
+        <div class="divider"></div>
+        <nav><h1>Comentários</h1></nav>
+        <div class="divider"></div>
+        <disqus style="width: 100%; max-width: 1000px; margin: 5px;" [identifier]="pageId"></disqus>
+        
+        <ng-adsense
+            [adClient]="'ca-pub-5746584168388916'"
+            [display]="'inline-block'"
+            [width]="320"
+            [height]="108"
+        ></ng-adsense>
+        <!-- ca-app-pub-5746584168388916~6238455779 -->
+    </div>
+</div>
